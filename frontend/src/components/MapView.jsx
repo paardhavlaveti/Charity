@@ -2,13 +2,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Package, HandHeart, Clock } from 'lucide-react';
 
 export function MapView({ items, myClaims, onMessageChange, requestMessage, onRequest }) {
-  const defaultCenter = [40.7128, -74.0060]; // Default to NYC, could be user's location
+  const defaultCenter = [20.5937, 78.9629]; // Default to India
 
   return (
     <div style={{ height: '600px', width: '100%', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-md)' }}>
       <MapContainer 
         center={items.length > 0 && items[0].latitude ? [items[0].latitude, items[0].longitude] : defaultCenter} 
-        zoom={12} 
+        zoom={items.length > 0 && items[0].latitude ? 12 : 5} 
         style={{ height: '100%', width: '100%' }}
       >
         <TileLayer

@@ -14,13 +14,13 @@ function LocationMarker({ position, setPosition }) {
 }
 
 export function MapLocationPicker({ position, setPosition }) {
-  const defaultCenter = [40.7128, -74.0060]; // Default to NYC, can be changed
+  const defaultCenter = [20.5937, 78.9629]; // Default to India
 
   return (
     <div style={{ height: '300px', width: '100%', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-color)' }}>
       <MapContainer 
         center={position ? [position.lat, position.lng] : defaultCenter} 
-        zoom={13} 
+        zoom={position ? 13 : 5} 
         style={{ height: '100%', width: '100%' }}
       >
         <TileLayer
