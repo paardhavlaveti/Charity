@@ -11,7 +11,7 @@ import { MapLocationPicker } from '../components/MapLocationPicker';
 import '../components/Kanban/KanbanBoard.css';
 import './Dashboard.css';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://charity-backend-91q6.onrender.com/api';
 
 function DonorDashboard() {
   const [items, setItems] = useState([]);

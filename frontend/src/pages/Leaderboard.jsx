@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Trophy, Medal, Star, Award } from 'lucide-react';
 import { useToast } from '../components/ToastContext';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://charity-backend-91q6.onrender.com/api';
 
 function Leaderboard() {
   const [leaders, setLeaders] = useState([]);

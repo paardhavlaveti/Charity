@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recha
 import { TrendingUp, Users, Package, CheckSquare } from 'lucide-react';
 import { useToast } from '../components/ToastContext';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://charity-backend-91q6.onrender.com/api';
 
 function ImpactDashboard() {
   const [stats, setStats] = useState(null);

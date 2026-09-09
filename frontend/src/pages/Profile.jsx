@@ -41,7 +41,7 @@ function Profile() {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`http://localhost:8080/api/users/${user.id}`, {
+      const response = await fetch(`https://charity-backend-91q6.onrender.com/api/users/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

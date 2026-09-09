@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useToast } from '../components/ToastContext';
 import './Auth.css';
 
-const API_URL = 'http://localhost:8080/api/users';
+const API_URL = 'https://charity-backend-91q6.onrender.com/api/users';
 
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);

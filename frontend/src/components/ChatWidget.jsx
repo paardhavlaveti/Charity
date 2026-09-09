@@ -5,8 +5,8 @@ import SockJS from 'sockjs-client/dist/sockjs';
 import { X, Send, MessageCircle } from 'lucide-react';
 import './ChatWidget.css';
 
-const API_URL = 'http://localhost:8080/api';
-const WS_URL = 'http://localhost:8080/ws';
+const API_URL = 'https://charity-backend-91q6.onrender.com/api';
+const WS_URL = 'https://charity-backend-91q6.onrender.com/ws';
 
 export function ChatWidget({ claimId, onClose, user }) {
   const [messages, setMessages] = useState([]);
