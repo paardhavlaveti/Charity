@@ -1,0 +1,374 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.charitybridge:backend >----------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ backend ---
+[INFO] Deleting D:\Trail\Backend\backend\target
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 24 source files with javac [debug parameters release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/repository/UserRepository.java:[21,30] method findByEmail(java.lang.String) is already defined in interface com.charitybridge.backend.repository.UserRepository
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[37,55] cannot find symbol
+  symbol:   method getItemId()
+  location: variable requestDto of type com.charitybridge.backend.dto.ClaimRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[41,17] cannot find symbol
+  symbol:   method getStatus()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[46,14] cannot find symbol
+  symbol:   method setItem(com.charitybridge.backend.model.Item)
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[47,14] cannot find symbol
+  symbol:   method setReceiver(com.charitybridge.backend.model.User)
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[48,36] cannot find symbol
+  symbol:   method getMessage()
+  location: variable requestDto of type com.charitybridge.backend.dto.ClaimRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[49,14] cannot find symbol
+  symbol:   method setStatus(com.charitybridge.backend.model.ItemClaim.ClaimStatus)
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[54,13] cannot find symbol
+  symbol:   method setStatus(com.charitybridge.backend.model.Item.Status)
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[65,14] cannot find symbol
+  symbol:   method setStatus(com.charitybridge.backend.model.ItemClaim.ClaimStatus)
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[69,26] cannot find symbol
+  symbol:   method getItem()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[70,13] cannot find symbol
+  symbol:   method setStatus(com.charitybridge.backend.model.Item.Status)
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[98,24] cannot find symbol
+  symbol:   method getId()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[99,28] cannot find symbol
+  symbol:   method getItem()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[100,31] cannot find symbol
+  symbol:   method getItem()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[101,34] cannot find symbol
+  symbol:   method getReceiver()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[102,28] cannot find symbol
+  symbol:   method getStatus()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[103,29] cannot find symbol
+  symbol:   method getMessage()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[106,18] cannot find symbol
+  symbol:   method getStatus()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[107,18] cannot find symbol
+  symbol:   method getStatus()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[110,22] cannot find symbol
+  symbol:   method getItem()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[111,39] cannot find symbol
+  symbol:   method getItem()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[112,40] cannot find symbol
+  symbol:   method getItem()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[116,22] cannot find symbol
+  symbol:   method getReceiver()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[117,43] cannot find symbol
+  symbol:   method getReceiver()
+  location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[37,33] cannot find symbol
+  symbol:   method getTitle()
+  location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[38,39] cannot find symbol
+  symbol:   method getDescription()
+  location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[39,36] cannot find symbol
+  symbol:   method getQuantity()
+  location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[40,36] cannot find symbol
+  symbol:   method getCategory()
+  location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[41,36] cannot find symbol
+  symbol:   method getImageUrl()
+  location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[42,13] cannot find symbol
+  symbol:   method setDonor(com.charitybridge.backend.model.User)
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[43,13] cannot find symbol
+  symbol:   method setStatus(com.charitybridge.backend.model.Item.Status)
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[81,23] cannot find symbol
+  symbol:   method getId()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[82,26] cannot find symbol
+  symbol:   method getTitle()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[83,32] cannot find symbol
+  symbol:   method getDescription()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[84,29] cannot find symbol
+  symbol:   method getQuantity()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[85,29] cannot find symbol
+  symbol:   method getCategory()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[86,29] cannot find symbol
+  symbol:   method getImageUrl()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[87,27] cannot find symbol
+  symbol:   method getStatus()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[90,17] cannot find symbol
+  symbol:   method getDonor()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[91,34] cannot find symbol
+  symbol:   method getDonor()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[92,34] cannot find symbol
+  symbol:   method getDonor()
+  location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[36,47] cannot find symbol
+  symbol:   method getEmail()
+  location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[41,30] cannot find symbol
+  symbol:   method getEmail()
+  location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[42,60] cannot find symbol
+  symbol:   method getPassword()
+  location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[43,29] cannot find symbol
+  symbol:   method getRole()
+  location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[44,34] cannot find symbol
+  symbol:   method getNameOrOrg()
+  location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[45,30] cannot find symbol
+  symbol:   method getPhone()
+  location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[46,32] cannot find symbol
+  symbol:   method getAddress()
+  location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[53,55] cannot find symbol
+  symbol:   method getEmail()
+  location: variable request of type com.charitybridge.backend.dto.LoginRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[56,45] cannot find symbol
+  symbol:   method getPassword()
+  location: variable request of type com.charitybridge.backend.dto.LoginRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[56,65] cannot find symbol
+  symbol:   method getPasswordHash()
+  location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[65,23] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[66,26] cannot find symbol
+  symbol:   method getEmail()
+  location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[67,25] cannot find symbol
+  symbol:   method getRole()
+  location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[68,30] cannot find symbol
+  symbol:   method getNameOrOrg()
+  location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[69,26] cannot find symbol
+  symbol:   method getPhone()
+  location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[70,28] cannot find symbol
+  symbol:   method getAddress()
+  location: variable user of type com.charitybridge.backend.model.User
+[INFO] 57 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18.111 s
+[INFO] Finished at: 2026-08-30T15:22:52+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.15.0:compile (default-compile) on project backend: Compilation failure: Compilation failure: 
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/repository/UserRepository.java:[21,30] method findByEmail(java.lang.String) is already defined in interface com.charitybridge.backend.repository.UserRepository
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[37,55] cannot find symbol
+[ERROR]   symbol:   method getItemId()
+[ERROR]   location: variable requestDto of type com.charitybridge.backend.dto.ClaimRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[41,17] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[46,14] cannot find symbol
+[ERROR]   symbol:   method setItem(com.charitybridge.backend.model.Item)
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[47,14] cannot find symbol
+[ERROR]   symbol:   method setReceiver(com.charitybridge.backend.model.User)
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[48,36] cannot find symbol
+[ERROR]   symbol:   method getMessage()
+[ERROR]   location: variable requestDto of type com.charitybridge.backend.dto.ClaimRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[49,14] cannot find symbol
+[ERROR]   symbol:   method setStatus(com.charitybridge.backend.model.ItemClaim.ClaimStatus)
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[54,13] cannot find symbol
+[ERROR]   symbol:   method setStatus(com.charitybridge.backend.model.Item.Status)
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[65,14] cannot find symbol
+[ERROR]   symbol:   method setStatus(com.charitybridge.backend.model.ItemClaim.ClaimStatus)
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[69,26] cannot find symbol
+[ERROR]   symbol:   method getItem()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[70,13] cannot find symbol
+[ERROR]   symbol:   method setStatus(com.charitybridge.backend.model.Item.Status)
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[98,24] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[99,28] cannot find symbol
+[ERROR]   symbol:   method getItem()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[100,31] cannot find symbol
+[ERROR]   symbol:   method getItem()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[101,34] cannot find symbol
+[ERROR]   symbol:   method getReceiver()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[102,28] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[103,29] cannot find symbol
+[ERROR]   symbol:   method getMessage()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[106,18] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[107,18] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[110,22] cannot find symbol
+[ERROR]   symbol:   method getItem()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[111,39] cannot find symbol
+[ERROR]   symbol:   method getItem()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[112,40] cannot find symbol
+[ERROR]   symbol:   method getItem()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[116,22] cannot find symbol
+[ERROR]   symbol:   method getReceiver()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemClaimService.java:[117,43] cannot find symbol
+[ERROR]   symbol:   method getReceiver()
+[ERROR]   location: variable claim of type com.charitybridge.backend.model.ItemClaim
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[37,33] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[38,39] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[39,36] cannot find symbol
+[ERROR]   symbol:   method getQuantity()
+[ERROR]   location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[40,36] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[41,36] cannot find symbol
+[ERROR]   symbol:   method getImageUrl()
+[ERROR]   location: variable requestDto of type com.charitybridge.backend.dto.ItemRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[42,13] cannot find symbol
+[ERROR]   symbol:   method setDonor(com.charitybridge.backend.model.User)
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[43,13] cannot find symbol
+[ERROR]   symbol:   method setStatus(com.charitybridge.backend.model.Item.Status)
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[81,23] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[82,26] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[83,32] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[84,29] cannot find symbol
+[ERROR]   symbol:   method getQuantity()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[85,29] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[86,29] cannot find symbol
+[ERROR]   symbol:   method getImageUrl()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[87,27] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[90,17] cannot find symbol
+[ERROR]   symbol:   method getDonor()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[91,34] cannot find symbol
+[ERROR]   symbol:   method getDonor()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/ItemService.java:[92,34] cannot find symbol
+[ERROR]   symbol:   method getDonor()
+[ERROR]   location: variable item of type com.charitybridge.backend.model.Item
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[36,47] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[41,30] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[42,60] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[43,29] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[44,34] cannot find symbol
+[ERROR]   symbol:   method getNameOrOrg()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[45,30] cannot find symbol
+[ERROR]   symbol:   method getPhone()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[46,32] cannot find symbol
+[ERROR]   symbol:   method getAddress()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.AuthRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[53,55] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.LoginRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[56,45] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable request of type com.charitybridge.backend.dto.LoginRequestDto
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[56,65] cannot find symbol
+[ERROR]   symbol:   method getPasswordHash()
+[ERROR]   location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[65,23] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[66,26] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[67,25] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[68,30] cannot find symbol
+[ERROR]   symbol:   method getNameOrOrg()
+[ERROR]   location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[69,26] cannot find symbol
+[ERROR]   symbol:   method getPhone()
+[ERROR]   location: variable user of type com.charitybridge.backend.model.User
+[ERROR] /D:/Trail/Backend/backend/src/main/java/com/charitybridge/backend/service/UserService.java:[70,28] cannot find symbol
+[ERROR]   symbol:   method getAddress()
+[ERROR]   location: variable user of type com.charitybridge.backend.model.User
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
