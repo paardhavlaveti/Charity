@@ -55,13 +55,13 @@ function Navbar() {
     navigate('/profile');
   };
 
-  if (!user) return null;
-
   const [notifications, setNotifications] = useState([
     { id: 1, text: "Your donation of 'Winter Coats' was requested!", time: "2 hours ago", unread: true },
     { id: 2, text: "A new NGO has joined CharityBridge in your area.", time: "1 day ago", unread: false },
     { id: 3, text: "Your impact score has increased by 50 points!", time: "3 days ago", unread: false },
   ]);
+
+  if (!user) return null;
 
   const unreadCount = notifications.filter(n => n.unread).length;
 
