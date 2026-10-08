@@ -45,8 +45,9 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     setIsDropdownOpen(false);
-    navigate('/auth');
+    window.location.href = '/auth';
   };
 
   const goToProfile = () => {
