@@ -52,7 +52,11 @@ function Auth() {
         navigate('/receiver');
       }
     } catch (err) {
-      triggerAnimation('error', err.response?.data?.message || 'Authentication failed. Please try again.');
+      if (!err.response) {
+        triggerAnimation('error', 'Cannot connect to server. Is the backend running?');
+      } else {
+        triggerAnimation('error', err.response?.data?.message || 'Authentication failed. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
