@@ -2,7 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Package, Clock, CheckCircle, MessageCircle, ShieldCheck } from 'lucide-react';
 
-export function KanbanCard({ item, activeClaims }) {
+export function KanbanCard({ item, activeClaims, isOverlay }) {
   const {
     attributes,
     listeners,
@@ -24,7 +24,7 @@ export function KanbanCard({ item, activeClaims }) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`kanban-card ${isDragging ? 'is-dragging' : ''}`}
+      className={`kanban-card ${isDragging ? 'is-dragging' : ''} ${isOverlay ? 'is-overlay' : ''}`}
       {...attributes}
       {...listeners}
     >

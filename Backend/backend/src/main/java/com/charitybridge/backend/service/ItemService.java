@@ -38,9 +38,12 @@ public class ItemService {
         item.setDescription(requestDto.getDescription());
         item.setQuantity(requestDto.getQuantity());
         item.setCategory(requestDto.getCategory());
+        item.setSubcategory(requestDto.getSubcategory());
+        item.setAttributes(requestDto.getAttributes());
         item.setImageUrl(requestDto.getImageUrl());
         item.setLatitude(requestDto.getLatitude());
         item.setLongitude(requestDto.getLongitude());
+        item.setFormattedAddress(requestDto.getFormattedAddress());
         item.setDonor(donor);
         item.setStatus(Item.Status.AVAILABLE);
 
@@ -51,13 +54,22 @@ public class ItemService {
         return mapToResponseDto(savedItem);
     }
 
-    public List<ItemResponseDto> getAllAvailableItems(Item.Category category, String location) {
+    public List<ItemResponseDto> getAllAvailableItems(String category, String location) {
         List<Item> items;
         
-        if (category != null && location != null && !location.trim().isEmpty()) {
-            items = itemRepository.findByCategoryAndStatusAndDonorAddressContainingIgnoreCase(category, Item.Status.AVAILABLE, location.trim());
-        } else if (category != null) {
-            items = itemRepository.findByCategoryAndStatus(category, Item.Status.AVAILABLE);
+        Item.Category categoryEnum = null;
+        if (category != null && !category.trim().isEmpty()) {
+            try {
+                categoryEnum = Item.Category.valueOf(category.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                // Invalid category string, you could handle it or leave enum null
+            }
+        }
+
+        if (categoryEnum != null && location != null && !location.trim().isEmpty()) {
+            items = itemRepository.findByCategoryAndStatusAndDonorAddressContainingIgnoreCase(categoryEnum, Item.Status.AVAILABLE, location.trim());
+        } else if (categoryEnum != null) {
+            items = itemRepository.findByCategoryAndStatus(categoryEnum, Item.Status.AVAILABLE);
         } else if (location != null && !location.trim().isEmpty()) {
             items = itemRepository.findByStatusAndDonorAddressContainingIgnoreCase(Item.Status.AVAILABLE, location.trim());
         } else {
@@ -85,10 +97,13 @@ public class ItemService {
         dto.setDescription(item.getDescription());
         dto.setQuantity(item.getQuantity());
         dto.setCategory(item.getCategory());
+        dto.setSubcategory(item.getSubcategory());
+        dto.setAttributes(item.getAttributes());
         dto.setImageUrl(item.getImageUrl());
         dto.setStatus(item.getStatus());
         dto.setLatitude(item.getLatitude());
         dto.setLongitude(item.getLongitude());
+        dto.setFormattedAddress(item.getFormattedAddress());
         
         // Safely extract donor info
         if (item.getDonor() != null) {

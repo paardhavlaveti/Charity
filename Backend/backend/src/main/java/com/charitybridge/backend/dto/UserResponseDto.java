@@ -14,4 +14,5 @@ public class UserResponseDto {
     private String address;
     private String profileImageUrl;
     private boolean isVerified;
+    private String token; // Added for JWT
 }

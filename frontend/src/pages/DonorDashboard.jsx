@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { Package, PlusCircle } from 'lucide-react';
 import { useToast } from '../components/ToastContext';
 import { DndContext, DragOverlay, closestCorners, pointerWithin } from '@dnd-kit/core';
@@ -7,11 +7,13 @@ import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { KanbanColumn } from '../components/Kanban/KanbanColumn';
 import { KanbanCard } from '../components/Kanban/KanbanCard';
 import { ChatWidget } from '../components/ChatWidget';
-import { MapLocationPicker } from '../components/MapLocationPicker';
+import { SkeletonLoader } from '../components/SkeletonLoader';
+import { EmptyState } from '../components/EmptyState';
+import { DonationWizard } from '../components/DonationWizard/DonationWizard';
 import '../components/Kanban/KanbanBoard.css';
 import './Dashboard.css';
-
-const API_URL = 'https://charity-backend-91q6.onrender.com/api';
+import { useAnimationOverlay } from '../components/AnimationOverlayContext';
+import { motion } from 'framer-motion';
 
 function DonorDashboard() {
   const [items, setItems] = useState([]);
@@ -19,37 +21,30 @@ function DonorDashboard() {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState(null);
   const [activeChatClaimId, setActiveChatClaimId] = useState(null);
+  const [showWizard, setShowWizard] = useState(false);
   
   const userStr = localStorage.getItem('user');
   const user = userStr ? JSON.parse(userStr) : null;
   const { addToast } = useToast();
-
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    quantity: '',
-    category: 'CLOTHING',
-    imageUrl: ''
-  });
-  const [position, setPosition] = useState(null);
+  const { triggerAnimation } = useAnimationOverlay();
 
   const fetchItems = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_URL}/items/donor/${user.id}`);
+      const response = await api.get(`/api/items/donor/${user.id}`);
       setItems(response.data);
       
       const claimsMap = {};
       for (const item of response.data) {
-        const claimsRes = await axios.get(`${API_URL}/claims/item/${item.id}`);
+        const claimsRes = await api.get(`/api/claims/item/${item.id}`);
         claimsMap[item.id] = claimsRes.data;
       }
       setClaims(claimsMap);
     } catch (err) {
-      addToast('Failed to fetch dashboard data', 'error');
+      triggerAnimation('error', 'Failed to fetch dashboard data');
     } finally {
       setLoading(false);
     }
-  }, [user.id, addToast]);
+  }, [user.id, triggerAnimation]);
 
   useEffect(() => {
     fetchItems();
@@ -64,39 +59,13 @@ function DonorDashboard() {
     };
   }, [fetchItems]);
 
-  const handleDonate = async (e) => {
-    e.preventDefault();
-    if (!position) {
-      addToast('Please select a location on the map.', 'warning');
-      return;
-    }
-    
-    try {
-      const payload = {
-        ...formData,
-        latitude: position.lat,
-        longitude: position.lng
-      };
-      
-      await axios.post(`${API_URL}/items`, payload, {
-        headers: { 'X-User-Id': user.id }
-      });
-      setFormData({ title: '', description: '', quantity: '', category: 'CLOTHING', imageUrl: '' });
-      setPosition(null);
-      addToast('Item listed successfully!', 'success');
-      fetchItems();
-    } catch (err) {
-      addToast('Failed to create item', 'error');
-    }
-  };
-
   const handleApprove = async (claimId) => {
     try {
-      await axios.patch(`${API_URL}/claims/${claimId}/approve`);
-      addToast('Claim approved successfully!', 'success');
+      await api.patch(`/api/claims/${claimId}/approve`);
+      triggerAnimation('approved', 'Request Approved! A connection has been made.');
       fetchItems();
     } catch (err) {
-      addToast('Failed to approve claim', 'error');
+      triggerAnimation('error', 'Failed to approve claim');
     }
   };
 
@@ -173,66 +142,81 @@ function DonorDashboard() {
     }
   };
 
-  if (loading) return <div className="container"><p>Loading dashboard...</p></div>;
+  if (loading) {
+    return (
+      <div className="container dashboard-container" style={{ maxWidth: '1400px' }}>
+        <div style={{ height: '80px', marginBottom: '2rem' }}>
+          <SkeletonLoader type="card" count={1} />
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', height: '500px' }}>
+          <SkeletonLoader type="card" count={4} />
+        </div>
+      </div>
+    );
+  }
 
   const activeItem = items.find(i => i.id === activeId);
 
   return (
     <div className="container dashboard-container" style={{ maxWidth: '1400px' }}>
       
-      <div className="donate-section glass-panel" style={{ marginBottom: '2rem' }}>
-        <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><PlusCircle size={24} /> Add New Donation</h2>
-        <form onSubmit={handleDonate} className="donate-form" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-          <div className="input-group" style={{ flex: '1', minWidth: '200px', marginBottom: 0 }}>
-            <label className="input-label">Title</label>
-            <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="input-field" required />
-          </div>
-          <div className="input-group" style={{ flex: '1', minWidth: '150px', marginBottom: 0 }}>
-            <label className="input-label">Category</label>
-            <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="input-field">
-              <option value="CLOTHING">Clothing</option>
-              <option value="FOOD">Food</option>
-              <option value="ELECTRONICS">Electronics</option>
-              <option value="MEDICAL">Medical</option>
-              <option value="OTHER">Other</option>
-            </select>
-          </div>
-          <div className="input-group" style={{ flex: '0.5', minWidth: '100px', marginBottom: 0 }}>
-            <label className="input-label">Qty</label>
-            <input type="text" value={formData.quantity} onChange={e => setFormData({...formData, quantity: e.target.value})} className="input-field" required />
-          </div>
-          <div className="input-group" style={{ flex: '2', minWidth: '300px', marginBottom: 0 }}>
-            <label className="input-label">Description</label>
-            <input type="text" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="input-field" required />
-          </div>
-          
-          <div style={{ width: '100%', marginBottom: '1rem' }}>
-            <label className="input-label">Item Location (Click to drop pin)</label>
-            <MapLocationPicker position={position} setPosition={setPosition} />
-          </div>
-          
-          <button type="submit" className="btn btn-primary" style={{ height: '42px', width: '100%' }}>List Item</button>
-        </form>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <h2><Package size={28} style={{ display: 'inline', verticalAlign: 'text-bottom', color: 'var(--primary)', marginRight: '8px' }} /> Your Inventory Board</h2>
+        <button 
+          onClick={() => setShowWizard(true)} 
+          className="btn btn-primary"
+        >
+          <PlusCircle size={20} /> Create Donation
+        </button>
       </div>
 
-      <h2 style={{ marginBottom: '1rem' }}><Package size={24} style={{ display: 'inline', verticalAlign: 'text-bottom' }} /> Your Inventory Board</h2>
+      {showWizard && (
+        <DonationWizard 
+          user={user} 
+          onClose={() => setShowWizard(false)} 
+          onSuccess={() => {
+            setShowWizard(false);
+            fetchItems();
+          }} 
+        />
+      )}
       
-      <DndContext 
-        collisionDetection={closestCorners} 
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-      >
-        <div className="kanban-container">
-          <KanbanColumn id="available" title="Available" items={columns.available} claimsMap={claims} />
-          <KanbanColumn id="requested" title="Requested" items={columns.requested} claimsMap={claims} />
-          <KanbanColumn id="approved" title="Pending Pickup" items={columns.approved} claimsMap={claims} />
-          <KanbanColumn id="fulfilled" title="Delivered" items={columns.fulfilled} claimsMap={claims} />
-        </div>
+      {items.length === 0 ? (
+        <EmptyState 
+          icon={Package} 
+          title="No Donations Yet" 
+          description="You haven't listed any items for donation. Create your first donation to start making an impact!"
+          actionText="Create Donation"
+          onAction={() => setShowWizard(true)}
+        />
+      ) : (
+        <DndContext 
+          collisionDetection={closestCorners} 
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+        >
+          <motion.div 
+            className="kanban-container"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.15 }
+              }
+            }}
+          >
+            <KanbanColumn id="available" title="Available" items={columns.available} claimsMap={claims} />
+            <KanbanColumn id="requested" title="Requested" items={columns.requested} claimsMap={claims} />
+            <KanbanColumn id="approved" title="Pending Pickup" items={columns.approved} claimsMap={claims} />
+            <KanbanColumn id="fulfilled" title="Delivered" items={columns.fulfilled} claimsMap={claims} />
+          </motion.div>
 
-        <DragOverlay>
-          {activeItem ? <KanbanCard item={activeItem} activeClaims={claims[activeItem.id]} /> : null}
-        </DragOverlay>
-      </DndContext>
+          <DragOverlay>
+            {activeItem ? <KanbanCard item={activeItem} activeClaims={claims[activeItem.id]} isOverlay={true} /> : null}
+          </DragOverlay>
+        </DndContext>
+      )}
 
       {activeChatClaimId && (
         <ChatWidget 

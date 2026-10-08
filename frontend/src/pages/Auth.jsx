@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 import { useToast } from '../components/ToastContext';
+import { useAnimationOverlay } from '../components/AnimationOverlayContext';
 import './Auth.css';
-
-const API_URL = 'https://charity-backend-91q6.onrender.com/api/users';
 
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { addToast } = useToast();
+  const { triggerAnimation } = useAnimationOverlay();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -35,9 +35,12 @@ function Auth() {
         ? { email: formData.email, password: formData.password }
         : formData;
 
-      const response = await axios.post(`${API_URL}${endpoint}`, payload);
+      const response = await api.post(`/api/users${endpoint}`, payload);
       
-      // Save user session
+      // Save token and user session
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
       localStorage.setItem('user', JSON.stringify(response.data));
       
       addToast(isLogin ? 'Login successful!' : 'Registration successful!', 'success');
@@ -49,7 +52,7 @@ function Auth() {
         navigate('/receiver');
       }
     } catch (err) {
-      addToast(err.response?.data?.message || 'Authentication failed. Please try again.', 'error');
+      triggerAnimation('error', err.response?.data?.message || 'Authentication failed. Please try again.');
     } finally {
       setLoading(false);
     }

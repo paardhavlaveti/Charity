@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { Shield, ShieldCheck, Search, CheckCircle, XCircle } from 'lucide-react';
 import { useToast } from '../components/ToastContext';
-
-const API_URL = 'https://charity-backend-91q6.onrender.com/api';
 
 function AdminDashboard() {
   const [ngos, setNgos] = useState([]);
@@ -13,7 +11,7 @@ function AdminDashboard() {
 
   const fetchNGOs = async () => {
     try {
-      const response = await axios.get(`${API_URL}/admin/ngos`);
+      const response = await api.get(`/api/admin/ngos`);
       setNgos(response.data);
     } catch (err) {
       addToast('Failed to load NGOs', 'error');
@@ -28,7 +26,7 @@ function AdminDashboard() {
 
   const handleVerifyToggle = async (ngoId, currentStatus) => {
     try {
-      await axios.patch(`${API_URL}/admin/ngos/${ngoId}/verify?verified=${!currentStatus}`);
+      await api.patch(`/api/admin/ngos/${ngoId}/verify?verified=${!currentStatus}`);
       addToast(currentStatus ? 'NGO Verification Revoked' : 'NGO Verified Successfully', 'success');
       fetchNGOs();
     } catch (err) {

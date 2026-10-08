@@ -15,10 +15,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
+    private final com.charitybridge.backend.security.JwtService jwtService;
 
-    public UserService(UserRepository userRepository, org.springframework.security.crypto.password.PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, org.springframework.security.crypto.password.PasswordEncoder passwordEncoder, com.charitybridge.backend.security.JwtService jwtService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public UserResponseDto getUserProfile(UUID userId) {
@@ -46,7 +48,9 @@ public class UserService {
         user.setAddress(request.getAddress());
 
         User savedUser = userRepository.save(user);
-        return mapToDto(savedUser);
+        UserResponseDto dto = mapToDto(savedUser);
+        dto.setToken(jwtService.generateToken(savedUser));
+        return dto;
     }
 
     public UserResponseDto loginUser(com.charitybridge.backend.dto.LoginRequestDto request) {
@@ -57,7 +61,9 @@ public class UserService {
             throw new RuntimeException("Invalid email or password");
         }
 
-        return mapToDto(user);
+        UserResponseDto dto = mapToDto(user);
+        dto.setToken(jwtService.generateToken(user));
+        return dto;
     }
 
     public UserResponseDto updateProfile(UUID userId, com.charitybridge.backend.dto.UpdateProfileRequestDto request) {

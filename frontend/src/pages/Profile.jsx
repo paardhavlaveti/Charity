@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/ToastContext';
+import { User, Mail, Phone, MapPin, Building, Edit3, Camera } from 'lucide-react';
+import api from '../services/api';
 import './Profile.css';
 
 function Profile() {
@@ -41,19 +43,9 @@ function Profile() {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`https://charity-backend-91q6.onrender.com/api/users/${user.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await api.put(`/api/users/${user.id}`, formData);
 
-      if (!response.ok) {
-        throw new Error('Failed to update profile');
-      }
-
-      const updatedUser = await response.json();
+      const updatedUser = response.data;
       localStorage.setItem('user', JSON.stringify(updatedUser));
       setUser(updatedUser);
       showToast('Profile updated successfully', 'success');

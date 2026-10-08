@@ -2,6 +2,7 @@ package com.charitybridge.backend.dto;
 
 import com.charitybridge.backend.model.Item;
 import lombok.Data;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -11,10 +12,13 @@ public class ItemResponseDto {
     private String description;
     private String quantity;
     private Item.Category category;
+    private String subcategory;
+    private Map<String, Object> attributes;
     private String imageUrl;
     private Item.Status status;
     private String donorName; // Flattened data
     private String donorCity; // Flattened data
     private Double latitude;
     private Double longitude;
+    private String formattedAddress;
 }

@@ -50,7 +50,13 @@
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
   cursor: grab;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.kanban-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
 }
 
 .kanban-card:active {
@@ -58,8 +64,17 @@
 }
 
 .kanban-card.is-dragging {
-  opacity: 0.5;
-  box-shadow: var(--shadow-lg);
+  opacity: 0.3;
+  border: 2px dashed var(--primary);
+  background: var(--bg-surface-elevated);
+}
+
+.kanban-card.is-overlay {
+  transform: scale(1.05) rotate(3deg) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-color: var(--primary);
+  opacity: 0.95;
+  cursor: grabbing;
 }
 
 .kanban-card-title {

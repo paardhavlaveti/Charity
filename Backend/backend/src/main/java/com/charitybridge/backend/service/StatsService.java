@@ -41,7 +41,7 @@ public class StatsService {
         
         Map<String, Long> categoryMap = allItems.stream()
             .collect(Collectors.groupingBy(
-                i -> i.getCategory().name(), 
+                i -> i.getCategory() != null ? i.getCategory().name() : "OTHER", 
                 Collectors.counting()
             ));
             

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { Search, MapPin, HandHeart, CheckCircle, Clock, MessageCircle } from 'lucide-react';
 import { useToast } from '../components/ToastContext';
 import { DndContext, DragOverlay, closestCorners } from '@dnd-kit/core';
@@ -7,10 +7,12 @@ import { ClaimKanbanColumn } from '../components/Kanban/ClaimKanbanColumn';
 import { ClaimKanbanCard } from '../components/Kanban/ClaimKanbanCard';
 import { ChatWidget } from '../components/ChatWidget';
 import { MapView } from '../components/MapView';
+import { SkeletonLoader } from '../components/SkeletonLoader';
+import { EmptyState } from '../components/EmptyState';
 import '../components/Kanban/KanbanBoard.css';
 import './Dashboard.css';
-
-const API_URL = 'https://charity-backend-91q6.onrender.com/api';
+import { useAnimationOverlay } from '../components/AnimationOverlayContext';
+import { motion } from 'framer-motion';
 
 function ReceiverDashboard() {
   const [availableItems, setAvailableItems] = useState([]);
@@ -25,29 +27,30 @@ function ReceiverDashboard() {
   
   const [requestMessage, setRequestMessage] = useState({});
   const { addToast } = useToast();
+  const { triggerAnimation } = useAnimationOverlay();
 
   const userStr = localStorage.getItem('user');
   const user = userStr ? JSON.parse(userStr) : null;
 
   const fetchData = useCallback(async () => {
     try {
-      let url = `${API_URL}/items`;
+      let url = `/api/items`;
       const params = new URLSearchParams();
       if (categoryFilter) params.append('category', categoryFilter);
       if (locationFilter) params.append('location', locationFilter);
       if (params.toString()) url += `?${params.toString()}`;
 
-      const itemsRes = await axios.get(url);
+      const itemsRes = await api.get(url);
       setAvailableItems(itemsRes.data);
 
-      const claimsRes = await axios.get(`${API_URL}/claims/receiver/${user.id}`);
+      const claimsRes = await api.get(`/api/claims/receiver/${user.id}`);
       setMyClaims(claimsRes.data);
     } catch (err) {
-      addToast('Failed to fetch dashboard data', 'error');
+      triggerAnimation('error', 'Failed to fetch dashboard data');
     } finally {
       setLoading(false);
     }
-  }, [user.id, categoryFilter, locationFilter, addToast]);
+  }, [user.id, categoryFilter, locationFilter, triggerAnimation]);
 
   useEffect(() => {
     fetchData();
@@ -69,28 +72,26 @@ function ReceiverDashboard() {
     }
     
     try {
-      await axios.post(`${API_URL}/claims`, {
+      await api.post(`/api/claims`, {
         itemId: itemId,
         message: requestMessage[itemId]
-      }, {
-        headers: { 'X-User-Id': user.id }
       });
       
       setRequestMessage({ ...requestMessage, [itemId]: '' });
-      addToast('Request sent successfully!', 'success');
+      triggerAnimation('requested', 'Request sent! The donor has been notified.');
       fetchData();
     } catch (err) {
-      addToast(err.response?.data?.message || 'Failed to request item', 'error');
+      triggerAnimation('error', err.response?.data?.message || 'Failed to request item');
     }
   };
 
   const handleFulfill = async (claimId) => {
     try {
-      await axios.patch(`${API_URL}/claims/${claimId}/fulfill`);
-      addToast('Item marked as received! Thank you.', 'success');
+      await api.patch(`/api/claims/${claimId}/fulfill`);
+      triggerAnimation('received', 'Successfully Received! Thank you.');
       fetchData();
     } catch (err) {
-      addToast('Failed to mark item as received', 'error');
+      triggerAnimation('error', 'Failed to mark item as received');
     }
   };
 
@@ -152,7 +153,18 @@ function ReceiverDashboard() {
     }
   };
 
-  if (loading) return <div className="container"><p>Loading dashboard...</p></div>;
+  if (loading) {
+    return (
+      <div className="container dashboard-container" style={{ maxWidth: '1400px' }}>
+        <div style={{ height: '80px', marginBottom: '2rem' }}>
+          <SkeletonLoader type="card" count={1} />
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', height: '400px' }}>
+          <SkeletonLoader type="card" count={3} />
+        </div>
+      </div>
+    );
+  }
 
   const activeClaim = myClaims.find(c => c.id === activeId);
 
@@ -168,14 +180,24 @@ function ReceiverDashboard() {
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
         >
-          <div className="kanban-container">
+          <motion.div 
+            className="kanban-container"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.15 }
+              }
+            }}
+          >
             <ClaimKanbanColumn id="requested" title="Awaiting Approval" claims={columns.requested} />
             <ClaimKanbanColumn id="approved" title="Ready for Pickup" claims={columns.approved} />
             <ClaimKanbanColumn id="fulfilled" title="Received" claims={columns.fulfilled} />
-          </div>
+          </motion.div>
 
           <DragOverlay>
-            {activeClaim ? <ClaimKanbanCard claim={activeClaim} /> : null}
+            {activeClaim ? <ClaimKanbanCard claim={activeClaim} isOverlay={true} /> : null}
           </DragOverlay>
         </DndContext>
       </div>
@@ -242,7 +264,17 @@ function ReceiverDashboard() {
         </div>
 
         {availableItems.length === 0 ? (
-          <p className="empty-state glass-panel">No items available matching your criteria.</p>
+          <EmptyState 
+            icon={Search} 
+            title="No Items Found" 
+            description="We couldn't find any donations matching your criteria."
+            actionText="Clear Filters"
+            onAction={() => {
+              setCategoryFilter('');
+              setLocationFilter('');
+              fetchData();
+            }}
+          />
         ) : viewMode === 'map' ? (
           <MapView 
             items={availableItems} 

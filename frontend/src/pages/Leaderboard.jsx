@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { Trophy, Medal, Star, Award } from 'lucide-react';
 import { useToast } from '../components/ToastContext';
-
-const API_URL = 'https://charity-backend-91q6.onrender.com/api';
 
 function Leaderboard() {
   const [leaders, setLeaders] = useState([]);
@@ -13,7 +11,7 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get(`${API_URL}/stats/leaderboard`);
+        const response = await api.get(`/api/stats/leaderboard`);
         setLeaders(response.data);
       } catch (err) {
         addToast('Failed to load leaderboard', 'error');

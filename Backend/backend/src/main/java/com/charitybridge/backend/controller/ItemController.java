@@ -33,7 +33,7 @@ public class ItemController {
 
     @GetMapping
     public ResponseEntity<List<ItemResponseDto>> getAllAvailableItems(
-            @RequestParam(required = false) com.charitybridge.backend.model.Item.Category category,
+            @RequestParam(required = false) String category,
             @RequestParam(required = false) String location) {
         return ResponseEntity.ok(itemService.getAllAvailableItems(category, location));
     }

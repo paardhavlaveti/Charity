@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import { X, Send, MessageCircle } from 'lucide-react';
 import './ChatWidget.css';
 
-const API_URL = 'https://charity-backend-91q6.onrender.com/api';
-const WS_URL = 'https://charity-backend-91q6.onrender.com/ws';
+const WS_URL = 'http://localhost:8080/ws';
 
 export function ChatWidget({ claimId, onClose, user }) {
   const [messages, setMessages] = useState([]);
@@ -28,7 +27,7 @@ export function ChatWidget({ claimId, onClose, user }) {
     if (!claimId) return;
 
     // Fetch history
-    axios.get(`${API_URL}/chat/${claimId}`).then((res) => {
+    api.get(`/api/chat/${claimId}`).then((res) => {
       setMessages(res.data);
     }).catch(err => console.error("Failed to load chat history", err));
 
