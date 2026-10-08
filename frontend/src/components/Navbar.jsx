@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { LogOut, Heart, User, ChevronDown, Settings, TrendingUp, Bell, Trophy, Shield, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation(); // Force re-render on route change
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const notificationRef = useRef(null);
+  
+  // Read user from localStorage on every render (which now includes route changes)
   const userStr = localStorage.getItem('user');
   const user = userStr ? JSON.parse(userStr) : null;
 
@@ -47,7 +50,7 @@ function Navbar() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     setIsDropdownOpen(false);
-    window.location.href = '/auth';
+    navigate('/auth'); // Use react-router to avoid 404 on deployment
   };
 
   const goToProfile = () => {
